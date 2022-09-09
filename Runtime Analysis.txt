@@ -1,0 +1,37 @@
+$ node runtime.js
+Results for the tinyArray
+insert 59.2 μs
+append 218 μs
+
+$ node runtime.js
+Results for the smallArray
+insert 74.2 μs
+append 225.7 μs
+
+$ node runtime.js
+Results for the mediumArray
+insert 279.5 μs
+append 319.3 μs
+
+$ node runtime.js
+Results for the largeArray
+insert 12.2274 ms
+append 830.3 μs
+
+$ node runtime.js
+Results for the extraLargeArray
+insert 1.2197774 s
+append 4.1555 ms
+
+		Tiny		Small		Medium		Large		Extra Large
+Double Insert	59.2 μs		74.2 μs		279.5 μs	12.2274 ms	1.2197774 s
+Double Append	218 μs		225.7 μs	319.3 μs	830.3 μs	4.1555 ms
+
+
+The function for double append scales better. The insert function slows over time. Though insert starts out strong, the scaling increases due to the shifting.
+
+Insert uses the .unshift function where it puts the next item in the FRONT of the array, making everything after it shift down.
+Append uses .push, where it places the next variable at the END of the array, but doesn't move the order of the array, just adding to the end.
+
+As more variables are added to the array, .unshift has to process more data to change each variables position in the array, where .push only has to add at the end, and not
+move any variables from where they started.
